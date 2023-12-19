@@ -366,6 +366,9 @@ function M.list(options, graph, files, hidden, graph_color)
     .call({ hidden = hidden, ignore_error = hidden }).stdout
 
   local commits = json.decode(output)
+  if vim.tbl_isempty(commits) then
+    return {}
+  end
 
   local graph_output
   if graph then
